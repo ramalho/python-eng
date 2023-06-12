@@ -1,5 +1,4 @@
 import itertools
-import time
 from multiprocessing import Process, Event
 
 from primes import is_prime
@@ -8,8 +7,7 @@ def girar(msg: str, pronto: Event) -> None:
     for char in itertools.cycle(r'\|/-'):
         status = f'\r{char} {msg}'
         print(status, end='', flush=True)
-        time.sleep(.05)
-        if pronto.is_set():
+        if pronto.wait(.05):
             break
     blanks = ' ' * len(status)
     print(f'\r{blanks}\r', end='')
