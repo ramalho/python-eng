@@ -24,7 +24,7 @@ def download_one(cc: str):  # <2>
     return cc
 
 def download_many(cc_list: list[str]) -> int:
-    with futures.ProcessPoolExecutor() as executor:         # <3>
+    with futures.ThreadPoolExecutor() as executor:         # <3>
         res = executor.map(download_one, sorted(cc_list))  # <4>
 
     return len(list(res))                                  # <5>
