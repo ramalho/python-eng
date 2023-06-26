@@ -2,7 +2,6 @@
 
 # tag::TCP_MOJIFINDER_TOP[]
 import asyncio
-import functools
 import sys
 from asyncio.trsock import TransportSocket
 from typing import cast
@@ -12,8 +11,9 @@ from charindex import InvertedIndex, format_results  # <1>
 CRLF = b'\r\n'
 PROMPT = b'?> '
 
-async def finder(index: InvertedIndex,          # <2>
-                 reader: asyncio.StreamReader,
+index = None
+
+async def finder(reader: asyncio.StreamReader,
                  writer: asyncio.StreamWriter) -> None:
     client = writer.get_extra_info('peername')  # <3>
     while True:  # <4>
@@ -30,7 +30,7 @@ async def finder(index: InvertedIndex,          # <2>
         if query:
             if ord(query[:1]) < 32:  # <12>
                 break
-            results = await search(query, index, writer)  # <13>
+            results = await search(query, writer)  # <13>
             print(f'   To {client}: {results} results.')  # <14>
 
     writer.close()  # <15>
@@ -40,7 +40,6 @@ async def finder(index: InvertedIndex,          # <2>
 
 # tag::TCP_MOJIFINDER_SEARCH[]
 async def search(query: str,  # <1>
-                 index: InvertedIndex,
                  writer: asyncio.StreamWriter) -> int:
     chars = index.search(query)  # <2>
     lines = (line.encode() + CRLF for line  # <3>
@@ -54,10 +53,8 @@ async def search(query: str,  # <1>
 # end::TCP_MOJIFINDER_SEARCH[]
 
 # tag::TCP_MOJIFINDER_MAIN[]
-async def supervisor(index: InvertedIndex, host: str, port: int) -> None:
-    server = await asyncio.start_server(    # <1>
-        functools.partial(finder, index),   # <2>
-        host, port)                         # <3>
+async def supervisor(host: str, port: int) -> None:
+    server = await asyncio.start_server(finder, host, port)
 
     socket_list = cast(tuple[TransportSocket, ...], server.sockets)  # <4>
     addr = socket_list[0].getsockname()
@@ -65,11 +62,12 @@ async def supervisor(index: InvertedIndex, host: str, port: int) -> None:
     await server.serve_forever()  # <6>
 
 def main(host: str = '127.0.0.1', port_arg: str = '2323'):
+    global index
     port = int(port_arg)
     print('Building index.')
     index = InvertedIndex()                         # <7>
     try:
-        asyncio.run(supervisor(index, host, port))  # <8>
+        asyncio.run(supervisor(host, port))  # <8>
     except KeyboardInterrupt:                       # <9>
         print('\nServer shut down.')
 
