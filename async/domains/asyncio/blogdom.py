@@ -3,7 +3,7 @@ from asyncio import run, get_running_loop, as_completed
 import socket
 from keyword import kwlist, softkwlist
 
-MAX_KEYWORD_LEN = 5  # <1>
+MAX_KEYWORD_LEN = 3  # <1>
 KEYWORDS = sorted(kwlist + softkwlist)
 
 async def probe(domain: str) -> tuple[str, bool]:  # <2>

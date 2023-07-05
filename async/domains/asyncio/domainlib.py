@@ -1,7 +1,8 @@
+from collections.abc import Iterable, AsyncIterator
+from typing import NamedTuple
+
 import asyncio
 import socket
-from collections.abc import Iterable, AsyncIterator
-from typing import NamedTuple, Optional
 
 
 class Result(NamedTuple):  # <1>
@@ -9,12 +10,7 @@ class Result(NamedTuple):  # <1>
     found: bool
 
 
-OptionalLoop = Optional[asyncio.AbstractEventLoop]  # <2>
-
-
-async def probe(domain: str, loop: OptionalLoop = None) -> Result:  # <3>
-    if loop is None:
-        loop = asyncio.get_running_loop()
+async def probe(domain: str, loop: asyncio.AbstractEventLoop) -> Result:  # <3>
     try:
         await loop.getaddrinfo(domain, None)
     except socket.gaierror:

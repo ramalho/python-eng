@@ -26,8 +26,9 @@ init(app)  # <5>
 
 @app.get('/search', response_model=list[CharName])  # <6>
 async def search(q: str):  # <7>
+    # nesse bloco eu posso usar await!!!!
     chars = sorted(app.state.index.search(q))
-    return ({'char': c, 'name': name(c)} for c in chars)  # <8>
+    return (CharName(char=c, name=name(c)) for c in chars)  # <8>
 
 @app.get('/', response_class=HTMLResponse, include_in_schema=False)
 def form():  # <9>
