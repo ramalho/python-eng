@@ -1,3 +1,13 @@
-# http fetch
+# Wikipics: downloading pictures from Wikipedia
 
-I/O-intensive functions to explore Python's GIL problem and work arounds.
+The main examples are named `fetch_*.py`.
+
+Most of the other files have to do with getting sample URLs
+to download Wikipedia images of an approximate size, to
+make demonstrations that are not too quick nor too slow.
+
+
+## Starting files
+
+* `spinner.py`: example of character-based animation on the terminal
+* `wikipics.py`: library to get URLs of sample images; function `get_sample_url(size)` returns the URL of a file of approximately `size` bytes.

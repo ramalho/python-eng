@@ -23,6 +23,6 @@ def spin(msg: str) -> None:
 
 if __name__ == '__main__':
     try:
-        spin('thinking...')
+        spin('thinking forever...')
     except KeyboardInterrupt:
         pass
