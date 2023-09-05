@@ -1,0 +1,1 @@
+Directory where downloaded images are saved.
