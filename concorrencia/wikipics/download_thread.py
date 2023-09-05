@@ -35,7 +35,7 @@ def fetch(url) -> bytes:
     return resp.content
 
 
-def download(url):
+def download(url) -> tuple[int, str]:
     octets = fetch(url)
     name = Path(url).name
     with open(SAVE_DIR / name, 'wb') as fp:
@@ -49,10 +49,12 @@ def main():
     print(f'spinner object: {spinner}')
     spinner.start()
     url = wikipics.get_sample_url(40_000_000)
+    t0 = time.perf_counter()
     size, name = download(url)
+    dt = time.perf_counter() - t0
     completed.set()
     spinner.join()
-    print(f'{size:_d} bytes\n{name}')
+    print(f'{size:_d} bytes in {dt:0.1f}s\n{name}')
 
 
 if __name__ == '__main__':
