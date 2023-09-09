@@ -10,5 +10,5 @@ while True:
     now = faces[face]
     face = (face + 1) % len(faces)
     print(now, end='', flush=True)
-    sleep(.2)    
+    sleep(.1)    
     print('\r' * len(now), end='', flush=True)
