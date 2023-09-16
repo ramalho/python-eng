@@ -1,8 +1,13 @@
-from time import strftime, sleep
+from time import sleep
+from datetime import datetime
 
 
 while True:
-    now = strftime('%H:%M:%S')
-    print(now, end='', flush=True)
-    sleep(.1)    
-    print('\r' * len(now), end='', flush=True)
+    now = datetime.now().strftime('%H:%M:%S.%f')[:10]
+    try:
+        print(now, end='', flush=True)
+        sleep(.1)
+    except KeyboardInterrupt:
+        break    
+    finally:
+        print('\r' * len(now), end='', flush=True)
