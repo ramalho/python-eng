@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import math
+from math import isqrt
 
 PRIME_FIXTURE = [
     (2, True),
@@ -25,27 +25,33 @@ PRIME_FIXTURE = [
     (9999999999999999, False),
 ]
 
+
 NUMBERS = [n for n, _ in PRIME_FIXTURE]
 
-# tag::IS_PRIME[]
+
 def is_prime(n: int) -> bool:
+    """Using 6k+-1 algorithm"""
     if n < 2:
         return False
     if n == 2:
         return True
-    if n % 2 == 0:
+    if n % 2 == 0 or n % 3 == 0:
         return False
 
-    root = math.isqrt(n)
-    for i in range(3, root + 1, 2):
-        if n % i == 0:
+    limit = isqrt(n)
+    for i in range(5, limit + 1, 6):
+        if n % i == 0 or n % (i + 2) == 0:
             return False
     return True
-# end::IS_PRIME[]
 
-if __name__ == '__main__':
 
+def auto_test():
+    """Test is_prime() with PRIME_FIXTURE"""
     for n, prime in PRIME_FIXTURE:
         prime_res = is_prime(n)
         assert prime_res == prime
         print(n, prime)
+
+
+if __name__ == '__main__':
+    auto_test()

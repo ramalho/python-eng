@@ -1,6 +1,6 @@
 # Wikipics: downloading pictures from Wikipedia
 
-The main examples are named `fetch_*.py`.
+The main examples are named `download_*.py`.
 
 Most of the other files have to do with getting sample URLs
 to download Wikipedia images of an approximate size, to

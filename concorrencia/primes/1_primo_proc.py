@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import itertools
 from multiprocessing import Process, Event
 
@@ -13,7 +15,7 @@ def girar(msg: str, pronto: Event) -> None:
     print(f'\r{blanks}\r', end='')
 
 
-def supervisor():
+def main():
     pronto = Event()
     girador = Process(target=girar, args=['Computando...', pronto])
     girador.start()
@@ -27,4 +29,4 @@ def supervisor():
 
 
 if __name__ == '__main__':
-    supervisor()
+    main()
