@@ -1,6 +1,60 @@
+# Concurrent benchmarks
+
+## Interpreter versions
+
+```
+$ python3 --version
+Python 3.10.12
+$ pypy3 --version
+Python 3.8.13 (7.3.9+dfsg-1, Apr 01 2022, 21:41:47)
+[PyPy 7.3.9 with GCC 11.2.0]
+```
+
+## Sample run
+
+Script compatible with Python 3.8 (supported by PyPy 7.3.9)
+
+```
+$ pypy3 n_primos_proc_py38.py
+Checking 20 numbers with 16 processes:
+               2  P  0.000004s
+3333333333333333     0.000004s
+4444444444444444     0.000006s
+5555555555555555     0.000046s
+6666666666666666     0.000012s
+7777777777777777     0.000044s
+9999999999999999     0.000005s
+ 142702110479723  P  0.015781s
+ 299593572317531  P  0.020436s
+4444444488888889     0.063057s
+5555555555555503  P  0.065277s
+3333333333333301  P  0.083176s
+3333335652092209     0.085459s
+7777777777777753  P  0.090459s
+4444444444444423  P  0.100379s
+6666667141414921     0.099932s
+5555553133149889     0.111482s
+6666666666666719  P  0.116083s
+7777777536340681     0.116376s
+9999999999999917  P  0.129154s
+20 checks in 0.14s
+```
+
+## Python 3.10 v. PyPy3 3.8 [7.3]
+
+```
+$ python3 n_primos_proc_py38.py | (head -1 && tail -1)
+Checking 20 numbers with 16 processes:
+20 checks in 3.18s
+$ pypy3 n_primos_proc_py38.py | (head -1 && tail -1)
+Checking 20 numbers with 16 processes:
+20 checks in 0.16s
+```
 
 
-# Python 3.10 v. PyPy3 3.8 [7.3]
+# Sequential benchmarks
+
+## Python 3.10 v. PyPy3 3.8 [7.3]
 
 
 ```
@@ -64,7 +118,7 @@ sys     0m0.010s
 ```
 
 
-# Python v. Go
+## Python v. Go
 
 ```
 $ time python3.10 primes.py > /dev/null
