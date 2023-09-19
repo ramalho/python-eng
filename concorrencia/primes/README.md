@@ -42,15 +42,27 @@ Checking 20 numbers with 16 processes:
 
 ## Python 3.10 v. PyPy3 3.8 [7.3]
 
+Running on Ubuntu 22.04 (WSL 2, Windows 11), Intel Core i9.
+
 ```
-$ python3 n_primos_proc_py38.py | (head -1 && tail -1)
+$ python3 n_primes_proc_py38.py | (head -1 && tail -1)
 Checking 20 numbers with 16 processes:
 20 checks in 3.18s
-$ pypy3 n_primos_proc_py38.py | (head -1 && tail -1)
+$ pypy3 n_primes_proc_py38.py | (head -1 && tail -1)
 Checking 20 numbers with 16 processes:
 20 checks in 0.16s
 ```
 
+Running on MacOS 13.5, Apple M2 Max:
+
+```
+% python3.11 n_primes_proc.py | (head -1 && tail -1)
+Checking 20 numbers with 12 processes:
+20 checks in 1.12s
+% pypy3 n_primes_proc.py | (head -1 && tail -1)
+Checking 20 numbers with 12 processes:
+20 checks in 0.15s
+```
 
 # Sequential benchmarks
 
