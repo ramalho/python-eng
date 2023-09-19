@@ -53,6 +53,9 @@ Checking 20 numbers with 16 processes:
 20 checks in 0.16s
 ```
 
+* This Core i9 has 16 logical cores (8 actual cores × 2 thanks to Hyperthreading™).
+* Pypy3 is much faster than CPython for this task.
+
 Running on MacOS 13.5, Apple M2 Max:
 
 ```
@@ -63,6 +66,26 @@ Checking 20 numbers with 12 processes:
 Checking 20 numbers with 12 processes:
 20 checks in 0.15s
 ```
+
+* This M2 Max has 12 cores.
+* CPython is almost 3x faster on M2 Max than on Core i9.
+* The performance of Pypy is nearly the same on M2 Max and Core i9.
+
+## Python 3.9 v. Python 3.11
+
+Running on Raspberri Pi 4 (8GB).
+
+```
+$ python3.9 n_primes_proc.py | (head -1 && tail -1)
+Checking 20 numbers with 4 processes:
+20 checks in 37.09s
+$ python3.11 n_primes_proc.py | (head -1 && tail -1)
+Checking 20 numbers with 4 processes:
+20 checks in 24.91s
+```
+
+* This Raspberry Pi has 3 cores.
+* Python 3.11 is significantly faster than 3.9.
 
 # Sequential benchmarks
 
@@ -104,6 +127,18 @@ real    0m0.631s
 user    0m0.621s
 sys     0m0.010s
 
+```
+
+## Raspberri Pi 4 (8GB)
+
+```
+$ python3 --version
+Python 3.9.2
+$ time python3 primes.py > /dev/null
+
+real    2m0.255s
+user    0m0.204s
+sys     0m0.029s
 ```
 
 
