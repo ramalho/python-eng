@@ -16,9 +16,9 @@ class Experiment(typing.NamedTuple):
 
 PRIME_FIXTURE = [
     Experiment(2, 2),  # 2 ** 1
-    Experiment(4, 2),  # 2 ** 2
     Experiment(3, 3),
     Experiment(4, 2),  # 2 ** 2
+    Experiment(77, 7),
     Experiment(18014398509481951, 18014398509481951),
     Experiment(18014398509481984, 2),  # 2 ** 54
     Experiment(18014399314786597, 134217689),
@@ -79,7 +79,7 @@ def auto_test():
         elapsed = time.perf_counter() - start
         assert lpf_result == pair.lpf, f'wrong LPF {lpf_result} for {pair.n}'
         label = 'P' if pair.prime else ' '
-        print(f'{label}  {pair.n:20}  {pair.lpf:20}  {elapsed:9.6f}s')
+        print(f'{label}  {pair.n:26_d}  {pair.lpf:26_d}  {elapsed:9.6f}s')
 
 
 if __name__ == '__main__':

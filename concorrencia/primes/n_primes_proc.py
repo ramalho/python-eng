@@ -66,7 +66,7 @@ def report(qtd_procs: int, results: ResultQueue) -> int:   # <6>
         else:
             checked += 1  # <10>
             label = 'P' if exp.prime else ' '
-            print(f'{exp.n:20}  {label}  {exp.lpf:20}  {exp.elapsed:9.6f}s')
+            print(f'{exp.n:26_d}  {label}  {exp.lpf:26_d}  {exp.elapsed:9.6f}s')
     return checked
 
 
