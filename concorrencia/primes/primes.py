@@ -1,56 +1,81 @@
 #!/usr/bin/env python3
 
-from math import isqrt
+import math
+import time
+import typing
+
+
+class Experiment(typing.NamedTuple):
+    n: int
+    lpf: int
+
+    @property
+    def prime(self):
+        return self.n == self.lpf
+
 
 PRIME_FIXTURE = [
-    (2, True),
-    (142702110479723, True),
-    (299593572317531, True),
-    (3333333333333301, True),
-    (3333333333333333, False),
-    (3333335652092209, False),
-    (4444444444444423, True),
-    (4444444444444444, False),
-    (4444444488888889, False),
-    (5555553133149889, False),
-    (5555555555555503, True),
-    (5555555555555555, False),
-    (6666666666666666, False),
-    (6666666666666719, True),
-    (6666667141414921, False),
-    (7777777536340681, False),
-    (7777777777777753, True),
-    (7777777777777777, False),
-    (9999999999999917, True),
-    (9999999999999999, False),
+    Experiment(17592186044416, 2),  # 2 ** 44
+    Experiment(17592186044399, 17592186044399),
+    Experiment(17592236376019, 4194301),
+    Experiment(281474976710656, 2),  # 2 ** 48
+    Experiment(281474976710597, 281474976710597),
+    Experiment(281475647799167, 16777213),
+    Experiment(4503599627370496, 2),  # 2 ** 52
+    Experiment(4503599627370449, 4503599627370449),
+    Experiment(4503600298459061, 67108859),
+    Experiment(72057594037927936, 2),  # 2 ** 56
+    Experiment(72057594037927931, 72057594037927931),
+    Experiment(72057596722278677, 268435399),
+    Experiment(1152921504606846976, 2),  # 2 ** 60
+    Experiment(1152921504606846883, 1152921504606846883),
+    Experiment(1152921538966582999, 1073741789),
+    Experiment(18446744073709551615, 3),  # 2 ** 64 - 1
+    Experiment(18446744073709551557, 18446744073709551557),  # costly!
+    Experiment(18446744030759878681, 4294967291),  # costly!
 ]
 
 
 NUMBERS = [n for n, _ in PRIME_FIXTURE]
 
 
-def is_prime(n: int) -> bool:
-    """Using 6k+-1 algorithm"""
-    if n < 2:
-        return False
-    if n == 2:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
+def least_prime_factor(n: int) -> int:
+    """Returns the least prime pactor of `n`.
+    When `n` is prime, the return value is `n`.
+    """
+    if n == 1:
+        return 1
+    if n % 2 == 0:
+        return 2
+    if n % 3 == 0:
+        return 3
 
-    limit = isqrt(n)
+    # using the 6k+-1 algorithm
+    limit = math.isqrt(n)
     for i in range(5, limit + 1, 6):
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-    return True
+        if n % i == 0:
+            return i
+        j = i + 2
+        if n % j == 0:
+            return j
+    return n
+
+
+def is_prime(n: int) -> bool:
+    if n <= 1:
+        return False
+    return least_prime_factor(n) == n
 
 
 def auto_test():
     """Test is_prime() with PRIME_FIXTURE"""
-    for n, prime in PRIME_FIXTURE:
-        prime_res = is_prime(n)
-        assert prime_res == prime
-        print(n, prime)
+    for pair in PRIME_FIXTURE:
+        start = time.perf_counter()
+        lpf_result = least_prime_factor(pair.n)
+        elapsed = time.perf_counter() - start
+        assert lpf_result == pair.lpf, f'wrong LPF {lpf_result} for {pair.n}'
+        label = 'P' if pair.prime else ' '
+        print(f'{label}  {pair.n:20}  {pair.lpf:20}  {elapsed:9.6f}s')
 
 
 if __name__ == '__main__':

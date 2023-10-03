@@ -16,29 +16,33 @@ from typing import NamedTuple
 from multiprocessing import Process, SimpleQueue, cpu_count  # <1>
 from multiprocessing import queues  # <2>
 
-from primes import is_prime, NUMBERS
+from primes import least_prime_factor, NUMBERS
 
 
-class PrimeResult(NamedTuple):  # <3>
+class Experiment(NamedTuple):  # <3>
     n: int
-    prime: bool
+    lpf: bool
     elapsed: float
+
+    @property
+    def prime(self):
+        return self.n == self.lpf
 
 
 JobQueue = queues.SimpleQueue[int]  # <4>
-ResultQueue = queues.SimpleQueue[PrimeResult]  # <5>
+ResultQueue = queues.SimpleQueue[Experiment]  # <5>
 
 
-def check(n: int) -> PrimeResult:  # <6>
+def check(n: int) -> Experiment:  # <6>
     t0 = perf_counter()
-    res = is_prime(n)
-    return PrimeResult(n, res, perf_counter() - t0)
+    res = least_prime_factor(n)
+    return Experiment(n, res, perf_counter() - t0)
 
 
 def worker(jobs: JobQueue, results: ResultQueue) -> None:  # <7>
     while n := jobs.get():  # <8>
         results.put(check(n))  # <9>
-    results.put(PrimeResult(0, False, 0.0))  # <10>
+    results.put(Experiment(0, False, 0.0))  # <10>
 
 
 def start_jobs(
@@ -56,13 +60,13 @@ def report(qtd_procs: int, results: ResultQueue) -> int:   # <6>
     checked = 0
     procs_done = 0
     while procs_done < qtd_procs:  # <7>
-        n, prime, elapsed = results.get()  # <8>
-        if n == 0:  # <9>
+        exp = results.get()  # <8>
+        if exp.n == 0:  # <9>
             procs_done += 1
         else:
             checked += 1  # <10>
-            label = 'P' if prime else ' '
-            print(f'{n:16}  {label} {elapsed:9.6f}s')
+            label = 'P' if exp.prime else ' '
+            print(f'{exp.n:20}  {label}  {exp.lpf:20}  {exp.elapsed:9.6f}s')
     return checked
 
 
