@@ -46,9 +46,8 @@ def worker(jobs: JobQueue, results: ResultQueue) -> None:  # <7>
     results.put(Experiment(0, False, 0.0))  # <10>
 
 
-def start_jobs(
-    qtd_procs: int, jobs: JobQueue, results: ResultQueue  # <11>
-) -> None:
+def start_jobs(qtd_procs: int, results: ResultQueue) -> None:
+    jobs: JobQueue = SimpleQueue()  # <2>
     for n in NUMBERS:
         jobs.put(n)  # <12>
     for _ in range(qtd_procs):
@@ -66,7 +65,7 @@ def report(qtd_procs: int, results: ResultQueue) -> int:   # <6>
             procs_done += 1
         else:
             checked += 1  # <10>
-            label = 'P' if exp.prime else ' '
+            label = '=' if exp.prime else ' '
             print(f'{exp.n:26_d}  {label}  {exp.lpf:26_d}  {exp.elapsed:9.6f}s')
     return checked
 
@@ -77,11 +76,10 @@ def main() -> None:
     else:
         qtd_procs = int(sys.argv[1])
 
-    print(f'Checking {len(NUMBERS)} numbers with {qtd_procs} processes:')
+    print(f'Using {qtd_procs} worker processes.')
     t0 = perf_counter()
-    jobs: JobQueue = SimpleQueue()  # <2>
     results: ResultQueue = SimpleQueue()
-    start_jobs(qtd_procs, jobs, results)  # <3>
+    start_jobs(qtd_procs, results)  # <3>
     checked = report(qtd_procs, results)  # <4>
     elapsed = perf_counter() - t0
     print(f'{checked} checks in {elapsed:.2f}s')  # <5>
