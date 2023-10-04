@@ -22,7 +22,7 @@ from primes import least_prime_factor, NUMBERS
 
 class Experiment(NamedTuple):  # <3>
     n: int
-    lpf: bool
+    lpf: int
     elapsed: float
 
     @property
