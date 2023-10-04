@@ -14,33 +14,38 @@ class Experiment(typing.NamedTuple):
         return self.n == self.lpf
 
 
-PRIME_FIXTURE = [
-    Experiment(2, 2),  # 2 ** 1
-    Experiment(3, 3),
-    Experiment(4, 2),  # 2 ** 2
-    Experiment(77, 7),
-    Experiment(18014398509481951, 18014398509481951),
-    Experiment(18014398509481984, 2),  # 2 ** 54
-    Experiment(18014399314786597, 134217689),
-    Experiment(72057594037927931, 72057594037927931),
-    Experiment(72057594037927936, 2),  # 2 ** 56
-    Experiment(72057596722278677, 268435399),
-    Experiment(288230376151711717, 288230376151711717),
-    Experiment(288230376151711744, 2),  # 2 ** 58
-    Experiment(288230380446679007, 536870909),
-    Experiment(1152921504606846883, 1152921504606846883),
-    Experiment(1152921504606846976, 2),  # 2 ** 60
-    Experiment(1152921538966582999, 1073741789),
-    Experiment(4611686018427387847, 4611686018427387847),
-    Experiment(4611686018427387904, 2),  # 2 ** 62
-    Experiment(4611686039902224373, 2147483647),
-    Experiment(18446744073709551557, 18446744073709551557),
-    Experiment(18446744073709551615, 3),  # 2 ** 64 - 1
-    Experiment(18446744030759878681, 4294967291),
+EXPERIMENTS = [
+    Experiment(61, 61),  # prime
+    Experiment(64, 2),  # 2 ** 6
+    Experiment(77, 7),  # semiprime
+    Experiment(134_217_689, 134217689),  # prime
+    Experiment(134_217_728, 2),  # 2 ** 27
+    Experiment(134_235_347, 11579),  # semiprime
+    Experiment(8_589_934_583, 8589934583),  # prime
+    Experiment(8_589_934_592, 2),  # 2 ** 33
+    Experiment(8_589_953_123, 92681),  # semiprime
+    Experiment(549_755_813_881, 549755813881),  # prime
+    Experiment(549_755_813_888, 2),  # 2 ** 39
+    Experiment(549_755_516_449, 741431),  # semiprime
+    Experiment(35_184_372_088_777, 35184372088777),  # prime
+    Experiment(35_184_372_088_832, 2),  # 2 ** 45
+    Experiment(35_184_412_406_009, 5931641),  # semiprime
+    Experiment(2_251_799_813_685_119, 2251799813685119),  # prime
+    Experiment(2_251_799_813_685_248, 2),  # 2 ** 51
+    Experiment(2_251_800_685_671_203, 47453111),  # semiprime
+    Experiment(144_115_188_075_855_859, 144115188075855859),  # prime
+    Experiment(144_115_188_075_855_872, 2),  # 2 ** 57
+    Experiment(144_115_189_976_253_901, 379625047),  # semiprime
+    Experiment(9_223_372_036_854_775_783, 9223372036854775783),  # prime
+    Experiment(9_223_372_036_854_775_808, 2),  # 2 ** 63
+    Experiment(9_223_372_037_000_249_951, 3037000493),  # semiprime
+    Experiment(18_446_744_073_709_551_557, 18446744073709551557),  # prime
+    Experiment(18_446_744_073_709_551_615, 3),  # 2 ** 64 - 1
+    Experiment(18_446_744_030_759_878_681, 4294967291),  # semiprime
 ]
 
 
-NUMBERS = [n for n, _ in PRIME_FIXTURE]
+NUMBERS = [n for n, _ in EXPERIMENTS]
 
 
 def least_prime_factor(n: int) -> int:
@@ -72,14 +77,17 @@ def is_prime(n: int) -> bool:
 
 
 def auto_test():
-    """Test is_prime() with PRIME_FIXTURE"""
-    for pair in PRIME_FIXTURE:
-        start = time.perf_counter()
-        lpf_result = least_prime_factor(pair.n)
-        elapsed = time.perf_counter() - start
-        assert lpf_result == pair.lpf, f'wrong LPF {lpf_result} for {pair.n}'
-        label = 'P' if pair.prime else ' '
-        print(f'{label}  {pair.n:26_d}  {pair.lpf:26_d}  {elapsed:9.6f}s')
+    """Test is_prime() with EXPERIMENTS"""
+    t0 = time.perf_counter()
+    for exp in EXPERIMENTS:
+        t = time.perf_counter()
+        lpf_result = least_prime_factor(exp.n)
+        elapsed = time.perf_counter() - t
+        assert lpf_result == exp.lpf, f'wrong LPF {lpf_result} for {exp.n}'
+        label = 'P' if exp.prime else ' '
+        print(f'{exp.n:26_d}  {label}  {exp.lpf:26_d}  {elapsed:9.6f}s')
+    elapsed = time.perf_counter() - t
+    print(f'{len(EXPERIMENTS)} checks in {elapsed:.2f}s')  # <5>
 
 
 if __name__ == '__main__':

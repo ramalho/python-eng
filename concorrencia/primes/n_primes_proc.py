@@ -6,8 +6,9 @@ can be faster than sequential code for CPU-intensive work.
 
 This is a DIY implementation of the worker pool pattern: the main
 program starts a number of worker processes which read integers
-from a queue, checkes wether they are prime, and and posts results
-into another queue which is used to generate a report on stdout.
+from a queue, checks whether each integer is prime, and and posts
+results into another queue which is consumed by a function that
+displays the results.
 """
 
 import sys
