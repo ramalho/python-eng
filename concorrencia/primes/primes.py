@@ -81,7 +81,7 @@ EXPERIMENTS = [
 ]
 
 
-NUMBERS = [n for n, _ in EXPERIMENTS]
+NUMBERS = (n for n, _ in EXPERIMENTS)
 
 
 def least_prime_factor(n: int) -> int:
