@@ -19,6 +19,31 @@ from multiprocessing import queues  # <2>
 
 from primes import least_prime_factor, NUMBERS
 
+"""
+Using `fork` to fix FileNotFoundError happening on MacOS 13.6 (Ventura)
+using Python 3.11 or 3.12.0 installed from images on python.org.
+The FileNotFoundError does not happen using PyPy 7.3.12 (~Python 3.10.12).
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/spawn.py", line 132, in _main
+    self = reduction.pickle.load(from_parent)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/synchronize.py", line 115, in __setstate__
+    self._semlock = _multiprocessing.SemLock._rebuild(*state)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory
+
+Fix mentioned here:
+https://superfastpython.com/filenotfounderror-multiprocessing-python/
+
+"""
+from multiprocessing import set_start_method
+set_start_method('fork')
+
 
 class Experiment(NamedTuple):  # <3>
     n: int
