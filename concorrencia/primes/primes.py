@@ -45,13 +45,13 @@ EXPERIMENTS = [
     PrimeResult(8796093022151, 8796093022151),  # prime
     PrimeResult(8796093022208, 2),  # 2 ** 43
     PrimeResult(8796165383693, 2965819),  # semiprime
-    PrimeResult(35184372088777, 35184372088777),  # prime
+    PrimeResult(35184372088777, 35184372088777),  # prime  # 0.8s on RPi 4 Cortex A72
     PrimeResult(35184372088832, 2),  # 2 ** 45
     PrimeResult(35184412406009, 5931641),  # semiprime
     PrimeResult(140737488355213, 140737488355213),  # prime
     PrimeResult(140737488355328, 2),  # 2 ** 47
     PrimeResult(140737507264631, 11863279),  # semiprime
-    PrimeResult(562949953421231, 562949953421231),  # prime  # 3.3s on RPi 4
+    PrimeResult(562949953421231, 562949953421231),  # prime  # 3.3s on RPi 4 Cortex A72
     PrimeResult(562949953421312, 2),  # 2 ** 49
     PrimeResult(562950123964819, 23726561),  # semiprime
     PrimeResult(2251799813685119, 2251799813685119),  # prime
@@ -72,7 +72,7 @@ EXPERIMENTS = [
     PrimeResult(2305843009213693951, 2305843009213693951),  # prime
     PrimeResult(2305843009213693952, 2),  # 2 ** 61
     PrimeResult(2305843018361062409, 1518500213),  # semiprime
-    PrimeResult(9223372036854775783, 9223372036854775783),  # prime
+    PrimeResult(9223372036854775783, 9223372036854775783),  # prime  # 2.0s on Vivobook Pro Core i9-11900H
     PrimeResult(9223372036854775808, 2),  # 2 ** 63
     PrimeResult(9223372037000249951, 3037000493),  # semiprime
     PrimeResult(18446744073709551557, 18446744073709551557),  # prime
