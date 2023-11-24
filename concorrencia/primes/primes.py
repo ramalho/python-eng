@@ -57,7 +57,7 @@ EXPERIMENTS = [
     PrimeResult(2251799813685119, 2251799813685119),  # prime
     PrimeResult(2251799813685248, 2),  # 2 ** 51
     PrimeResult(2251800685671203, 47453111),  # semiprime
-    PrimeResult(9007199254740881, 9007199254740881),  # prime
+    PrimeResult(9007199254740881, 9007199254740881),  # prime  # 1.2s on  MacStudio M2 Max
     PrimeResult(9007199254740992, 2),  # 2 ** 53
     PrimeResult(9007200654749953, 94906249),  # semiprime
     PrimeResult(36028797018963913, 36028797018963913),  # prime
@@ -69,7 +69,7 @@ EXPERIMENTS = [
     PrimeResult(576460752303423433, 576460752303423433),  # prime
     PrimeResult(576460752303423488, 2),  # 2 ** 59
     PrimeResult(576460752312515429, 759250111),  # semiprime
-    PrimeResult(2305843009213693951, 2305843009213693951),  # prime
+    PrimeResult(2305843009213693951, 2305843009213693951),  # prime  # 1.2s on Vivobook Pro Core i9-11900H
     PrimeResult(2305843009213693952, 2),  # 2 ** 61
     PrimeResult(2305843018361062409, 1518500213),  # semiprime
     PrimeResult(9223372036854775783, 9223372036854775783),  # prime  # 2.0s on Vivobook Pro Core i9-11900H

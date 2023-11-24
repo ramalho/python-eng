@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Measure download times to find image size that
 # takes approximately TARGET seconds to download.
 
