@@ -6,6 +6,7 @@ from typing import NoReturn
 
 SPRITE = r'\|/-'
 
+
 def spin(msg: str) -> NoReturn:
     try:
         for char in itertools.cycle(SPRITE):
@@ -15,6 +16,7 @@ def spin(msg: str) -> NoReturn:
     except KeyboardInterrupt:
         blanks = ' ' * len(status)
         print(f'\r{blanks}\r', end='')
+
 
 if __name__ == '__main__':
     spin('thinking forever...')

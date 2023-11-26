@@ -6,7 +6,7 @@ from operator import attrgetter
 from primes import EXPERIMENTS, is_prime
 
 __doc__ = f"""
-{sys.argv[0]} finds a prime number that takes TIME seconds to check.
+{sys.argv[0]} finds a prime number that takes "about" TIME seconds to check.
 
 USAGE:
     {sys.argv[0]} TIME

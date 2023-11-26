@@ -25,10 +25,10 @@ def spin(msg: str, completed: Event) -> None:
     for char in itertools.cycle(SPRITE):
         status = f'\r{char} {msg}'
         print(status, end='', flush=True)
-        if completed.wait(.1):
+        if completed.wait(0.1):
             break
     blanks = ' ' * len(status)
-    print(f'\r{blanks}\r', end='')
+    print(f'\r{blanks}\r', end='', flush=True)
 
 
 def fetch(url) -> bytes:

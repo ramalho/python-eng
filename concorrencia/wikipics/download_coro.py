@@ -39,6 +39,7 @@ async def fetch(url) -> bytes:
         resp.raise_for_status()
         return resp.content
 
+
 async def download(url) -> tuple[int, str]:
     octets = await fetch(url)
     name = Path(url).name
@@ -47,15 +48,21 @@ async def download(url) -> tuple[int, str]:
     return len(octets), SAVE_DIR / name
 
 
-async def main():
+async def supervisor() -> str:
     spinner = asyncio.create_task(spin('downloading'))
     print(f'spinner object: {spinner}')
     url = wikipics.get_sample_url(40_000_000)
     t0 = time.perf_counter()
     size, name = await download(url)
     dt = time.perf_counter() - t0
-    print(f'{size:_d} bytes in {dt:0.1f}s\n{name}')
+    spinner.cancel()
+    return f'{size:_d} bytes in {dt:0.1f}s\n{name}'
+
+
+def main():
+    msg = asyncio.run(supervisor())
+    print(msg)
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()
