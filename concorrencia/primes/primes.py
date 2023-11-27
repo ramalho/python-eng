@@ -198,7 +198,7 @@ def is_prime(n: int) -> bool:
 
 
 def make_sample(largest: int) -> list[int]:
-    max_exp = log2(largest) + .5
+    max_exp = log2(largest) + 0.5
     return list(takewhile(lambda n: log2(n) <= max_exp, NUMBERS))[-21:]
 
 

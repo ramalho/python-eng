@@ -21,6 +21,7 @@ def time_cost(n):
     is_prime(n)
     return time.perf_counter() - t0
 
+
 def main():
     try:
         target_time = float(sys.argv[1])
@@ -36,7 +37,7 @@ def main():
         middle = (start + end) // 2
         pick = primes[middle]
         print(f'{start:2}:{end:<2} [{middle:2}]     {pick:26_}', end=' ', flush=True)
-        t = time_cost(pick) 
+        t = time_cost(pick)
         print(f'({t:.3f}s)')
         if t <= target_time:
             start = middle

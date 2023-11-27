@@ -17,7 +17,7 @@ from typing import NamedTuple
 from multiprocessing import Process, SimpleQueue, cpu_count  # <1>
 from multiprocessing import queues  # <2>
 
-from primes import least_prime_factor, NUMBERS
+from primes import least_prime_factor, make_sample
 
 """
 Using `fork` to fix FileNotFoundError happening on MacOS 13.6 (Ventura)
@@ -42,7 +42,19 @@ https://superfastpython.com/filenotfounderror-multiprocessing-python/
 
 """
 from multiprocessing import set_start_method
+
 set_start_method('fork')
+
+# Magnitude of primes that take a few seconds to check
+#
+# machine  magnitude
+# RPI4     2 ** 49
+# X250     2 ** 53
+# YOGA9    2 ** 57
+# M2MAX    2 ** 57
+# VIVO     2 ** 63
+
+MAGNITUDE = 2**57
 
 
 class Experiment(NamedTuple):  # <3>
@@ -73,7 +85,7 @@ def worker(jobs: JobQueue, results: ResultQueue) -> None:  # <7>
 
 def start_jobs(qtd_procs: int, results: ResultQueue) -> None:
     jobs: JobQueue = SimpleQueue()  # <2>
-    for n in NUMBERS:
+    for n in make_sample(MAGNITUDE):
         jobs.put(n)  # <12>
     for _ in range(qtd_procs):
         proc = Process(target=worker, args=(jobs, results))  # <13>
@@ -81,7 +93,7 @@ def start_jobs(qtd_procs: int, results: ResultQueue) -> None:
         jobs.put(0)  # <15> "poison pill"
 
 
-def report(qtd_procs: int, results: ResultQueue) -> int:   # <6>
+def report(qtd_procs: int, results: ResultQueue) -> int:  # <6>
     checked = 0
     procs_done = 0
     while procs_done < qtd_procs:  # <7>
@@ -107,7 +119,7 @@ def main() -> None:
     start_jobs(qtd_procs, results)  # <3>
     checked = report(qtd_procs, results)  # <4>
     elapsed = perf_counter() - t0
-    print(f'{checked} checks in {elapsed:.2f}s')  # <5>
+    print(f'{checked} checks in {elapsed:.1f}s')  # <5>
 
 
 if __name__ == '__main__':

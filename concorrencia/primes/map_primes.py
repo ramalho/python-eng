@@ -36,9 +36,7 @@ def main():
     t0 = time.perf_counter()
     processing_time = 0
     with futures.ProcessPoolExecutor(max_workers=qtd_procs) as executor:
-        tasks = (executor.submit(check_lpf, n) for n in sample)
-        for future in futures.as_completed(tasks):
-            lpf, elapsed = future.result()
+        for lpf, elapsed in executor.map(check_lpf, sample):
             separator = '=' if lpf.prime else ' '
             print(f'{lpf.n:26_d} {separator} {lpf.factor:26_d}  ({elapsed:9.5f}s)')
             processing_time += elapsed
