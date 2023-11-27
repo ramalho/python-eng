@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-import math
 import time
 import typing
+from itertools import takewhile
+from math import log2, isqrt
 
 
 class LeastPrimeFactor(typing.NamedTuple):
@@ -180,7 +181,7 @@ def least_prime_factor(n: int) -> int:
         return 3
 
     # using the 6k+-1 algorithm
-    limit = math.isqrt(int(n))
+    limit = isqrt(int(n))
     for i in range(5, limit + 1, 6):
         if n % i == 0:
             return i
@@ -194,6 +195,11 @@ def is_prime(n: int) -> bool:
     if n <= 1:
         return False
     return least_prime_factor(n) == n
+
+
+def make_sample(largest: int) -> list[int]:
+    max_exp = log2(largest) + .5
+    return list(takewhile(lambda n: log2(n) <= max_exp, NUMBERS))[-21:]
 
 
 def auto_test():
