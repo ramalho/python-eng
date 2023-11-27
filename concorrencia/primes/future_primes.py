@@ -29,7 +29,7 @@ def main():
     processing_time = 0
     with ProcessPoolExecutor() as executor:
         for lpf, elapsed in executor.map(check_lpf, sample):
-            separator = ' = ' if  lpf.n == lpf.factor else '   '
+            separator = '=' if  lpf.prime() else ' '
             print(f'{lpf.n:26_d} {separator} {lpf.factor:26_d}  ({elapsed:9.5f}s)')
             processing_time += elapsed
     elapsed = perf_counter() - t0
