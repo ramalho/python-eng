@@ -45,9 +45,7 @@ EXPERIMENTS = [
     LeastPrimeFactor(26388279066623, 26388279066623),  # prime
     LeastPrimeFactor(26388279066624, 2),
     LeastPrimeFactor(26388378589219, 5136947),  # semiprime
-    LeastPrimeFactor(
-        35184372088777, 35184372088777
-    ),  # prime  # 0.8s on RPi 4 Cortex A72
+    LeastPrimeFactor(35184372088777, 35184372088777),  # prime  # 0.8s on RPi 4 Cortex A72
     LeastPrimeFactor(35184372088832, 2),  # 2 ** 45
     LeastPrimeFactor(35184412406009, 5931641),  # semiprime
     LeastPrimeFactor(52776558133177, 52776558133177),  # prime
@@ -71,14 +69,10 @@ EXPERIMENTS = [
     LeastPrimeFactor(422212465065953, 422212465065953),  # prime
     LeastPrimeFactor(422212465065984, 2),
     LeastPrimeFactor(422212701274081, 20547803),  # semiprime
-    LeastPrimeFactor(
-        562949953421231, 562949953421231
-    ),  # prime  # 3.3s on RPi 4 Cortex A72
+    LeastPrimeFactor(562949953421231, 562949953421231),  # prime  # 3.3s on RPi 4 Cortex A72
     LeastPrimeFactor(562949953421312, 2),  # 2 ** 49
     LeastPrimeFactor(562950123964819, 23726561),  # semiprime
-    LeastPrimeFactor(
-        844424930131963, 844424930131963
-    ),  # prime  # 1.1s on ThinkPad X250 i7-5600U
+    LeastPrimeFactor(844424930131963, 844424930131963),  # prime  # 1.1s on ThinkPad X250 i7-5600U
     LeastPrimeFactor(844424930131968, 2),
     LeastPrimeFactor(844425248527967, 29058989),  # semiprime
     LeastPrimeFactor(1125899906842597, 1125899906842597),  # prime
@@ -96,17 +90,13 @@ EXPERIMENTS = [
     LeastPrimeFactor(4503599627370449, 4503599627370449),  # prime
     LeastPrimeFactor(4503599627370496, 2),  # 2 ** 52
     LeastPrimeFactor(4503600298459061, 67108859),  # semiprime
-    LeastPrimeFactor(
-        6755399441055731, 6755399441055731
-    ),  # prime  # 3.0s on ThinkPad X250 i7-5600U
+    LeastPrimeFactor(6755399441055731, 6755399441055731),  # prime  # 3.0s on ThinkPad X250 i7-5600U
     LeastPrimeFactor(6755399441055744, 2),
     LeastPrimeFactor(6755400425876213, 82191149),  # semiprime
-    LeastPrimeFactor(
-        9007199254740881, 9007199254740881
-    ),  # prime  # 1.2s on MacStudio M2 Max
+    LeastPrimeFactor(9007199254740881, 9007199254740881),  # prime  # 1.2s on MacStudio M2 Max
     LeastPrimeFactor(9007199254740992, 2),  # 2 ** 53
     LeastPrimeFactor(9007200654749953, 94906249),  # semiprime
-    LeastPrimeFactor(13510798882111483, 13510798882111483),  # prime
+    LeastPrimeFactor(13510798882111483, 13510798882111483),  # prime  # 1.0s on Yoga 9i i7-1360P
     LeastPrimeFactor(13510798882111488, 2),
     LeastPrimeFactor(13510800489368561, 116235949),  # semiprime
     LeastPrimeFactor(18014398509481951, 18014398509481951),  # prime
@@ -124,12 +114,10 @@ EXPERIMENTS = [
     LeastPrimeFactor(72057594037927931, 72057594037927931),  # prime
     LeastPrimeFactor(72057594037927936, 2),  # 2 ** 56
     LeastPrimeFactor(72057596722278677, 268435399),  # semiprime
-    LeastPrimeFactor(108086391056891903, 108086391056891903),  # prime
+    LeastPrimeFactor(108086391056891903, 108086391056891903),  # prime  # 3.1s on Yoga 9i i7-1360P
     LeastPrimeFactor(108086391056891904, 2),
     LeastPrimeFactor(108086392348502419, 328764941),  # semiprime
-    LeastPrimeFactor(
-        144115188075855859, 144115188075855859
-    ),  # prime  # 3.7s on MacStudio M2 Max
+    LeastPrimeFactor(144115188075855859, 144115188075855859),  # prime  # 3.7s on MacStudio M2 Max
     LeastPrimeFactor(144115188075855872, 2),  # 2 ** 57
     LeastPrimeFactor(144115189976253901, 379625047),  # semiprime
     LeastPrimeFactor(216172782113783773, 216172782113783773),  # prime
@@ -153,9 +141,7 @@ EXPERIMENTS = [
     LeastPrimeFactor(1729382256910270433, 1729382256910270433),  # prime
     LeastPrimeFactor(1729382256910270464, 2),
     LeastPrimeFactor(1729382303877233891, 1315059763),  # semiprime
-    LeastPrimeFactor(
-        2305843009213693951, 2305843009213693951
-    ),  # prime  # 1.2s on Vivobook Pro i9-11900H
+    LeastPrimeFactor(2305843009213693951, 2305843009213693951),  # prime  # 1.2s on Vivobook Pro i9-11900H
     LeastPrimeFactor(2305843009213693952, 2),  # 2 ** 61
     LeastPrimeFactor(2305843018361062409, 1518500213),  # semiprime
     LeastPrimeFactor(3458764513820540791, 3458764513820540791),  # prime
@@ -167,9 +153,7 @@ EXPERIMENTS = [
     LeastPrimeFactor(6917529027641081737, 6917529027641081737),  # prime
     LeastPrimeFactor(6917529027641081856, 2),
     LeastPrimeFactor(6917529036660811171, 2630119571),  # semiprime
-    LeastPrimeFactor(
-        9223372036854775783, 9223372036854775783
-    ),  # prime  # 2.0s on Vivobook Pro i9-11900H
+    LeastPrimeFactor(9223372036854775783, 9223372036854775783),  # prime  # 2.0s on Vivobook Pro i9-11900H
     LeastPrimeFactor(9223372036854775808, 2),  # 2 ** 63
     LeastPrimeFactor(9223372037000249951, 3037000493),  # semiprime
     LeastPrimeFactor(13835058055282163681, 13835058055282163681),  # prime
@@ -181,7 +165,7 @@ EXPERIMENTS = [
 ]
 
 
-NUMBERS = (n for n, _ in EXPERIMENTS)
+NUMBERS = [n for n, _ in EXPERIMENTS]
 
 
 def least_prime_factor(n: int) -> int:
@@ -230,12 +214,12 @@ if __name__ == '__main__':
     auto_test()
 
 
-
 # Timings for all 147 numbers in EXPERIMENTS:
 #
 # time   machine
 # 9649s  RPi 4 Cortex A72
 # 2564s  ThinkPad X250 i7-5600U
+#  955s  Yoga 9i i7-1360P
 #  791s  MacStudio M2 Max
 #   78s  Vivobook Pro i9-11900H
 
@@ -244,5 +228,6 @@ if __name__ == '__main__':
 # time   machine
 #  833s  RPi 4 Cortex A72
 #  228s  ThinkPad X250 i7-5600U
+#   95s  Yoga 9i i7-1360P
 #   81s  MacStudio M2 Max
 #   12s  Vivobook Pro i9-11900H

@@ -1,3 +1,5 @@
+[tool.ruff]
+line-length = 120
 [tool.ruff.format]
 # Prefer single quotes over double quotes.
 quote-style = "single"
