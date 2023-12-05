@@ -35,6 +35,7 @@ def main():
     sample = make_sample(MAGNITUDE)
     t0 = time.perf_counter()
     processing_time = 0
+    
     with futures.ThreadPoolExecutor(max_workers=qtd_procs) as executor:
         tasks = (executor.submit(check_lpf, n) for n in sample)
         for future in futures.as_completed(tasks):

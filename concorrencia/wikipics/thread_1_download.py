@@ -4,7 +4,7 @@ import itertools
 import time
 
 from pathlib import Path
-from multiprocessing import Event, Process
+from threading import Event, Thread
 
 import httpx
 
@@ -31,23 +31,18 @@ def spin(msg: str, completed: Event) -> None:
     print(f'\r{blanks}\r', end='')
 
 
-def fetch(url) -> bytes:
+def download(url) -> tuple[int, str]:
     resp = httpx.get(url)
     resp.raise_for_status()
-    return resp.content
-
-
-def download(url) -> tuple[int, str]:
-    octets = fetch(url)
     name = Path(url).name
     with open(SAVE_DIR / name, 'wb') as fp:
-        fp.write(octets)
-    return len(octets), SAVE_DIR / name
+        fp.write(resp.content)
+    return len(resp.content), SAVE_DIR / name
 
 
 def main():
     completed = Event()
-    spinner = Process(target=spin, args=('downloading', completed))
+    spinner = Thread(target=spin, args=('downloading', completed))
     print(f'spinner object: {spinner}')
     spinner.start()
     url = wikipics.get_sample_url(40_000_000)
