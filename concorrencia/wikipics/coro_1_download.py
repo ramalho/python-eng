@@ -30,7 +30,7 @@ async def spin(msg: str) -> None:
         except asyncio.CancelledError:
             break
     blanks = ' ' * len(status)
-    print(f'\r{blanks}\r', end='', flush=True)
+    print(f'\r{blanks}\r', end='')
 
 
 async def fetch(url) -> bytes:
