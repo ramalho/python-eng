@@ -94,7 +94,7 @@ EXPERIMENTS = [
     LeastPrimeFactor(6755399441055731, 6755399441055731),  # prime  # 3.0s on ThinkPad X250 i7-5600U
     LeastPrimeFactor(6755399441055744, 2),
     LeastPrimeFactor(6755400425876213, 82191149),  # semiprime
-    LeastPrimeFactor(9007199254740881, 9007199254740881),  # prime  # 1.2s on MacStudio M2 Max
+    LeastPrimeFactor(9007199254740881, 9007199254740881),  # prime  # 1.2s on MacStudio M2 Max, 1.2s on ThinkPad Carbon X1 i7-1365U
     LeastPrimeFactor(9007199254740992, 2),  # 2 ** 53
     LeastPrimeFactor(9007200654749953, 94906249),  # semiprime
     LeastPrimeFactor(13510798882111483, 13510798882111483),  # prime  # 1.0s on Yoga 9i i7-1360P
@@ -112,7 +112,7 @@ EXPERIMENTS = [
     LeastPrimeFactor(54043195528445869, 54043195528445869),  # prime
     LeastPrimeFactor(54043195528445952, 2),
     LeastPrimeFactor(54043196378148947, 232471903),  # semiprime
-    LeastPrimeFactor(72057594037927931, 72057594037927931),  # prime
+    LeastPrimeFactor(72057594037927931, 72057594037927931),  # prime  # 3.0s on ThinkPad Carbon X1 i7-1365U
     LeastPrimeFactor(72057594037927936, 2),  # 2 ** 56
     LeastPrimeFactor(72057596722278677, 268435399),  # semiprime
     LeastPrimeFactor(108086391056891903, 108086391056891903),  # prime  # 3.1s on Yoga 9i i7-1360P
