@@ -191,6 +191,10 @@ def least_prime_factor(n: int) -> int:
     return n
 
 
+def lpf_pair(n):
+    return LeastPrimeFactor(n, least_prime_factor(n))
+
+
 def is_prime(n: int) -> bool:
     if n <= 1:
         return False
