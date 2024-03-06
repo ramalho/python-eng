@@ -2262,7 +2262,6 @@
 2988299	e/e3/Maggie_Roswell.jpg
 2991245	f/ff/Cabot_Square%2C_Canary_Wharf_-_June_2008.jpg
 2992673	c/c2/Frank_Sinatra_by_Gottlieb_c1947-_2.jpg
-2995019	e/e5/Quaterionenadler_David_de_Negker.jpg
 2995130	e/ec/Ara_ararauna_Luc_Viatour.jpg
 2999426	8/8a/P1160778_Melitaea_athalia.jpg
 3003835	3/38/Hf-crystal_bar.jpg
@@ -2654,7 +2653,6 @@
 4001974	9/90/SWA-15a-Swakopmunder_Buchhandlung-Two_Mark_%281916%29.jpg
 4002840	e/e3/Levin_C._Handy_-_General_Robert_E._Lee_in_May_1869.jpg
 4020058	2/27/Opossum_2.jpg
-4023812	8/8c/Kuwait_Towers_RB.jpg
 4025867	e/ed/Torpedoed_Japanese_destroyer_Yamakaze_sinking_on_25_June_1942.jpg
 4028526	7/71/4_cilindros_y_museo_BMW%2C_M%C3%BAnich%2C_Alemania_2012-04-28%2C_DD_02.JPG
 4028837	c/c2/Pieter_de_Hooch_-_The_Courtyard_of_a_House_in_Delft.jpg
