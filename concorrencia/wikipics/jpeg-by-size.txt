@@ -932,7 +932,6 @@
 974570	7/7c/Los_Angeles_Pollution.jpg
 976074	5/5e/White_peach_and_cross_section_edit.jpg
 977470	7/7d/Seehund.jpg
-977894	6/65/Gazania_rigens_var._rigens.jpg
 977947	3/3a/Carambola_Starfruit.jpg
 979323	a/a6/AgamaSinaita01_ST_10_edit.jpg
 982309	1/1e/Maurycy_Gottlieb_-_Jews_Praying_in_the_Synagogue_on_Yom_Kippur.jpg
@@ -3820,7 +3819,6 @@
 9955802	e/e0/Oscar_Wilde_-_An_Ideal_Husband_-_You_brute%21_You_coward%21.jpg
 9958832	e/ef/Grampians_Panorama_from_Pinnacle_Edit_1_-_Nov_2008.jpg
 9959993	d/db/Schw%C3%A4bisch_Hall_in_winter.jpg
-9967031	d/d4/Vel%C3%A1zquez_%E2%80%93_Buf%C3%B3n_don_Sebasti%C3%A1n_de_Morra_%28Museo_del_Prado%2C_c._1645%29.jpg
 9981822	c/c6/Russell_Falls_2.jpg
 9994764	9/93/Royal_Albert_Hall%2C_London_-_Nov_2012.jpg
 10001575	a/a1/Aepyceros_melampus_petersi_female_8014.jpg
