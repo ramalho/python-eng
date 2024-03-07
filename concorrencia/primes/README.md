@@ -2,6 +2,9 @@
 
 ## CPU usage
 
+How to get CPU usage in multi-process programs:
+
+https://stackoverflow.com/questions/276281/cpu-usage-per-process-in-python
 
 ## Concurrent benchmarks
 
