@@ -1,6 +1,11 @@
-# Concurrent benchmarks
+# Notes
 
-## Interpreter versions
+## CPU usage
+
+
+## Concurrent benchmarks
+
+### Interpreter versions
 
 ```
 $ python3 --version
@@ -10,7 +15,7 @@ Python 3.8.13 (7.3.9+dfsg-1, Apr 01 2022, 21:41:47)
 [PyPy 7.3.9 with GCC 11.2.0]
 ```
 
-## Sample run
+### Sample run
 
 Script compatible with Python 3.8 (supported by PyPy 7.3.9)
 
@@ -40,7 +45,7 @@ Checking 20 numbers with 16 processes:
 20 checks in 0.14s
 ```
 
-## Python 3.10 v. PyPy3 3.8 [7.3]
+### Python 3.10 v. PyPy3 3.8 [7.3]
 
 Running on Ubuntu 22.04 (WSL 2, Windows 11), Intel Core i9.
 
@@ -71,7 +76,7 @@ Checking 20 numbers with 12 processes:
 * CPython is almost 3x faster on M2 Max than on Core i9.
 * The performance of Pypy is nearly the same on M2 Max and Core i9.
 
-## Python 3.9 v. Python 3.11
+### Python 3.9 v. Python 3.11
 
 Running on Raspberri Pi 4 (8GB).
 
@@ -87,9 +92,9 @@ Checking 20 numbers with 4 processes:
 * This Raspberry Pi has 3 cores.
 * Python 3.11 is significantly faster than 3.9.
 
-# Sequential benchmarks
+## Sequential benchmarks
 
-## Python 3.10 v. PyPy3 3.8 [7.3]
+### Python 3.10 v. PyPy3 3.8 [7.3]
 
 
 ```
@@ -129,7 +134,7 @@ sys     0m0.010s
 
 ```
 
-## Raspberri Pi 4 (8GB)
+### Raspberri Pi 4 (8GB)
 
 ```
 $ python3 --version
@@ -142,7 +147,7 @@ sys     0m0.029s
 ```
 
 
-## Python v. Go
+### Python v. Go
 
 ```
 $ time python3.10 primes.py > /dev/null
