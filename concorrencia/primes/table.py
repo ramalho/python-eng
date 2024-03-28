@@ -17,7 +17,7 @@ class Table:
             if elapsed is None:
                 result = f'{lpf:_}' if lpf else '\N{Hourglass with Flowing Sand}'
             else:
-                result = f'{lpf:_} ({elapsed:.3f}s)' if lpf else '\N{Hourglass with Flowing Sand}'
+                result = f'{lpf:_} ({elapsed:.3f}s)' if lpf != n else f'({elapsed:.3f}s)'
             return Valid(
                 value = lpf == n,
                 description = f'{n:_}',
