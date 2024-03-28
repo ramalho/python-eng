@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+    #!/usr/bin/env python3
 
 """
 n_primes_proc.py: shows that multiprocessing on a multicore machine
@@ -120,7 +120,6 @@ def main() -> None:
     checked = report(qtd_procs, results)  # <4>
     elapsed = perf_counter() - t0
     print(f'{checked} checks in {elapsed:.1f}s')  # <5>
-
 
 if __name__ == '__main__':
     main()

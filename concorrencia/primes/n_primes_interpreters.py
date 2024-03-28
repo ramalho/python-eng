@@ -12,13 +12,15 @@ displays the results.
 """
 
 import sys
+import os
 from time import perf_counter
 from typing import NamedTuple
-from multiprocessing import Process, SimpleQueue, cpu_count  # <1>
 from multiprocessing import queues  # <2>
 
+import extrainterpreters as ei
+
 from primes import least_prime_factor, NUMBERS
-NUMBERS = [n for n in NUMBERS][:-12]
+NUMBERS = [n for n in NUMBERS][:-20]
 
 """
 Using `fork` to fix FileNotFoundError happening on MacOS 13.6 (Ventura)
@@ -42,9 +44,6 @@ Fix mentioned here:
 https://superfastpython.com/filenotfounderror-multiprocessing-python/
 
 """
-from multiprocessing import set_start_method
-set_start_method('fork')
-
 
 class Experiment(NamedTuple):  # <3>
     n: int
@@ -56,8 +55,8 @@ class Experiment(NamedTuple):  # <3>
         return self.n == self.lpf
 
 
-JobQueue = queues.SimpleQueue[int]  # <4>
-ResultQueue = queues.SimpleQueue[Experiment]  # <5>
+JobQueue = ei.Queue  # <4>
+ResultQueue = ei.Queue  # <5>
 
 
 def check(n: int) -> Experiment:  # <6>
@@ -73,11 +72,11 @@ def worker(jobs: JobQueue, results: ResultQueue) -> None:  # <7>
 
 
 def start_jobs(qtd_procs: int, results: ResultQueue) -> None:
-    jobs: JobQueue = SimpleQueue()  # <2>
+    jobs: JobQueue = ei.Queue()  # <2>
     for n in NUMBERS:
         jobs.put(n)  # <12>
     for _ in range(qtd_procs):
-        proc = Process(target=worker, args=(jobs, results))  # <13>
+        proc = ei.Interpreter(target=worker, args=(jobs, results))  # <13>
         proc.start()  # <14>
         jobs.put(0)  # <15> "poison pill"
 
@@ -86,7 +85,7 @@ def report(qtd_procs: int, results: ResultQueue) -> int:   # <6>
     checked = 0
     procs_done = 0
     while procs_done < qtd_procs:  # <7>
-        exp = results.get()  # <8>
+        exp = results.get(timeout=10)  # <8>
         if exp.n == 0:  # <9>
             procs_done += 1
         else:
@@ -98,17 +97,18 @@ def report(qtd_procs: int, results: ResultQueue) -> int:   # <6>
 
 def main() -> None:
     if len(sys.argv) < 2:  # <1>
-        qtd_procs = cpu_count()
+        qtd_procs = os.cpu_count()
     else:
         qtd_procs = int(sys.argv[1])
 
     print(f'Using {qtd_procs} worker processes.')
     t0 = perf_counter()
-    results: ResultQueue = SimpleQueue()
+    results: ResultQueue = ei.Queue()
     start_jobs(qtd_procs, results)  # <3>
     checked = report(qtd_procs, results)  # <4>
     elapsed = perf_counter() - t0
     print(f'{checked} checks in {elapsed:.2f}s')  # <5>
+    ei.destroy_dangling_interpreters()
 
 
 if __name__ == '__main__':
