@@ -13,11 +13,15 @@ class Table:
         self.cell_map = {n:i for i, n in enumerate(sample)}
         self.box = VBox(self.cells) 
 
-    def make_cell(self, n, lpf):
+    def make_cell(self, n, lpf, elapsed=None):
+            if elapsed is None:
+                result = f'{lpf:_}' if lpf else '\N{Hourglass with Flowing Sand}'
+            else:
+                result = f'{lpf:_} ({elapsed:.3f}s)' if lpf else '\N{Hourglass with Flowing Sand}'
             return Valid(
                 value = lpf == n,
                 description = f'{n:_}',
-                readout = f'{lpf:_}' if lpf else '\N{Hourglass with Flowing Sand}',
+                readout = result,
                 layout = self.layout,
                 style = self.style,
             )
@@ -25,6 +29,6 @@ class Table:
     def display(self):
         display(self.box)
 
-    def update(self, n, lpf):
-        self.cells[self.cell_map[n]] = self.make_cell(n, lpf)
+    def update(self, n, lpf, elapsed=None):
+        self.cells[self.cell_map[n]] = self.make_cell(n, lpf, elapsed)
         self.box.children = self.cells

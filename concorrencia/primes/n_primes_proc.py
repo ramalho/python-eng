@@ -1,4 +1,4 @@
-    #!/usr/bin/env python3
+#!/usr/bin/env python3
 
 """
 n_primes_proc.py: shows that multiprocessing on a multicore machine
