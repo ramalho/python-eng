@@ -1,7 +1,9 @@
 import itertools
 import time
-#from threading import Thread, Event
+
+# from threading import Thread, Event
 from multiprocessing import Process, Event
+
 
 def girar(msg: str, pronto: Event) -> None:
     for char in itertools.cycle(r'\|/-'):
@@ -20,13 +22,14 @@ def buscar() -> int:
 
 def main():
     pronto = Event()
-    #fio = Thread(target=girar, args=['pensando...', pronto])
+    # fio = Thread(target=girar, args=['pensando...', pronto])
     fio = Process(target=girar, args=['pensando...', pronto])
     fio.start()
     res = buscar()
     pronto.set()
     fio.join()
     print(res)
+
 
 if __name__ == '__main__':
     main()
