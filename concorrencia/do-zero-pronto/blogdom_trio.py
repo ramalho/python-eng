@@ -19,9 +19,10 @@ async def probe(sender: SendChannel, domain: str):
 
 
 async def report(receiver: ReceiveChannel):
-    async for domain, found in receiver:
-        mark = '+' if found else '-'
-        print(f'{mark} {domain}')
+    async with receiver:
+        async for domain, found in receiver:
+            mark = '+' if found else '-'
+            print(f'{mark} {domain}')
 
 
 async def main():
