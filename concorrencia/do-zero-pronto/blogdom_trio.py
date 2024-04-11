@@ -2,10 +2,10 @@
 import trio
 import trio.socket as socket
 from trio.abc import SendChannel, ReceiveChannel
-from keyword import kwlist
+from keyword import kwlist, softkwlist
 
-MAX_KEYWORD_LEN = 4
-NAMES = [kw for kw in kwlist if len(kw) <= MAX_KEYWORD_LEN]
+MAX_KEYWORD_LEN = 5
+NAMES = [kw for kw in kwlist+softkwlist if len(kw) <= MAX_KEYWORD_LEN]
 
 
 async def probe(sender: SendChannel, domain: str):

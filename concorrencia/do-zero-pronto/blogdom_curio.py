@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 from curio import run, TaskGroup
 import curio.socket as socket
-from keyword import kwlist
+from keyword import kwlist, softkwlist
 
-MAX_KEYWORD_LEN = 4
-NAMES = [kw for kw in kwlist if len(kw) <= MAX_KEYWORD_LEN]
+MAX_KEYWORD_LEN = 5
+NAMES = [kw for kw in kwlist+softkwlist if len(kw) <= MAX_KEYWORD_LEN]
 
 
 async def probe(domain: str) -> tuple[str, bool]:  # (1)
