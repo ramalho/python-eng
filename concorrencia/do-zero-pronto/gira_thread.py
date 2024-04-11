@@ -2,6 +2,7 @@ import itertools
 import time
 from threading import Thread, Event
 
+
 def girar(msg: str, calculado: Event) -> None:
     for char in itertools.cycle(r'\|/-'):
         status = f'\r{char} {msg}'
@@ -25,6 +26,7 @@ def main():
     calculado.set()
     fio.join()
     print(res)
+
 
 if __name__ == '__main__':
     main()

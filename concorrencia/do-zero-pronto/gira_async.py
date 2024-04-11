@@ -2,11 +2,12 @@ import itertools
 import asyncio
 import time
 
+
 async def girar(msg: str) -> None:
     for char in itertools.cycle(r'\|/-'):
         status = f'\r{char} {msg}'
         print(status, end='', flush=True)
-        #if calculado.wait(0.05):
+        # if calculado.wait(0.05):
         #    break
         try:
             await asyncio.sleep(0.05)
@@ -33,5 +34,3 @@ async def main():
 if __name__ == '__main__':
     res = asyncio.run(main())
     print(res)
-
-
